@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService';
+import Validation from './Validation';
 
 class UpdateEmployeeComponent extends Component {
     constructor(props) {
@@ -26,8 +27,17 @@ class UpdateEmployeeComponent extends Component {
         });
     }
 
-    updateEmployee = (e) => {
-        e.preventDefault();
+    updateEmployee = (eve) => {
+        eve.preventDefault();
+
+        let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
+
+        const validation = Validation.checkUserValues(employee);
+        if (validation !== "valid") {
+            alert(validation);
+            return
+        }
+
         let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
         console.log('employee => ' + JSON.stringify(employee));
         console.log('id => ' + JSON.stringify(this.state.id));
