@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService';
 import Validation from './Validation';
 
+// Ant design imports
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
+
 class UpdateEmployeeComponent extends Component {
     constructor(props) {
         super(props)
@@ -87,9 +91,10 @@ class UpdateEmployeeComponent extends Component {
                                             <input placeholder="Email Address" name="emailId" className="form-control" 
                                                 value={this.state.emailId} onChange={this.changeEmailHandler}/>
                                         </div>
-
-                                        <button className="btn btn-success" onClick={this.updateEmployee}>Save</button>
-                                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <div className = "text-center">
+                                            <Button type = "primary" onClick={this.updateEmployee}>Save</Button>
+                                            <Button type = "danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

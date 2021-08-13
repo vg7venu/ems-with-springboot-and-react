@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import EmployeeService from '../services/EmployeeService';
 import Validation from './Validation';
 
+// Ant design imports
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
+
 class CreateEmployeeComponent extends Component {
     constructor(props) {
         super(props)
@@ -35,15 +39,15 @@ class CreateEmployeeComponent extends Component {
     saveOrUpdateEmployee = (eve) => {
         eve.preventDefault();
 
-        let e = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
+        let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
 
-        const validation = Validation.checkUserValues(e);
+        const validation = Validation.checkUserValues(employee);
         if (validation !== "valid") {
             alert(validation);
             return
         }
 
-        let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
+        //let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
         console.log('employee => ' + JSON.stringify(employee));
 
         if (this.state.id === '_add') {
@@ -109,13 +113,14 @@ class CreateEmployeeComponent extends Component {
                                             value={this.state.emailId} onChange={this.changeEmailHandler} />
                                     </div>
                                     <br></br>
-                                    <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancel</button>
+                                    <div className="text-center">
+                                    <Button type = "primary" onClick={this.saveOrUpdateEmployee}>Save</Button>
+                                    <Button type = "danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         )
